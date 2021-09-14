@@ -30,19 +30,19 @@ if(isset($_POST['submit'])) {
     $logins = array("piet@worldonline.nl" => "doetje123", "klaas@carpets.nl" => "snoepje777", "truushendriks@wegweg.nl" => "arkiearkie201");
     $foundID = false;
     foreach ($logins as $account => $geldigeID) {
-        if(strcasecmp($account .= $geldigeID, $_POST['emailadres'] .= $_POST['wachtwoord'] ) == 0){
+        if (strcasecmp($account .= $geldigeID, $_POST['emailadres'] .= $_POST['wachtwoord']) == 0) {
             $foundID = true;
             break;
-            }
         }
-    if ($foundID == true){
-        echo "Welkom!";
-    } else {
-        echo "Sorry, geen toegang!";
+        if ($foundID == true) {
+            echo "Welkom!";
+        } else {
+            echo "Sorry, geen toegang!";
+            break;
+        }
     }
 }
 
 ?>
 </body>
 </html>
-
