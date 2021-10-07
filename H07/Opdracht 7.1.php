@@ -97,7 +97,7 @@
     <img src="Sources/unicorn.jpg" style="width: 200px; height: 200px" alt="">
         </div>
     <div>
-        <a style="color: black; position: absolute; top: 300px; border: solid black 3px" href="Opdracht%207.1.php?loguit">LOG OUT</a>
+        <a style="color: black; position: absolute; top: 300px; border: solid black" href="Opdracht%207.1.php?loguit">LOG OUT</a>
     </div>
 </main>
 <div id="form">
@@ -146,7 +146,7 @@ if (isset($_POST['submit'])) {
     $stmt->execute() or die ("error 2");
     $foundId = false;
     while ($result = $stmt->fetch()) {
-        if ($result['emailadres'] == $_POST['emailadres'] and ($result['wachtwoord'] == $_POST['wachtwoord'])) {
+        if ($result['emailadres'] == $_POST['emailadres'] && ($result['wachtwoord'] == $_POST['wachtwoord'])) {
             $foundId = true;
             $_SESSION['rights'] = $result['rechten'];
             $_SESSION['user'] = $_POST["emailadres"];
@@ -173,7 +173,6 @@ function RoleRights(): bool
     $_SESSION['admin'] = $approve;
     return $approve;
 }
-
 ?>
 
 
