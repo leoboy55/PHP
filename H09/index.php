@@ -9,7 +9,7 @@
         padding: 0;
         margin: 0;
     }
-    trColor {
+    tr Color {
         background-color: goldenrod;
     }
     li{
@@ -81,6 +81,7 @@
     </ul>
 </nav>
     </div>
+
     <div id="2">
     <section id="completeOverzicht">
         <table id="broodjesOverzicht">
@@ -89,34 +90,35 @@
                 <td style="background-color: goldenrod">Meel soort</td>
                 <td style="background-color: goldenrod">Vorm brood</td>
                 <td style="background-color: goldenrod">Gewicht in gram</td>
+                <td style="background-color: red">Verwijder </td>
             </tr>
-            <?php foreach($_SESSION['broodjes']->getBroodjeslijst() as $broodje) { ?>
+            <?php
+            JSC($_SESSION['broodjes']);
+            function JSC($input){
+                echo "<pre>";
+                print_r($input);
+                echo "</pre>";
+            }
+
+            foreach($_SESSION['broodjes']->getBroodjeslijst() as $k => $broodje) { ?>
             <tr>
                 <td><?php echo $broodje->getNaamBrood(); ?></td>
                 <td><?php echo $broodje->getMeelSoort(); ?></td>
                 <td><?php echo $broodje->getVormBrood(); ?></td>
                 <td><?php echo $broodje->getGewichtsBrood(); ?></td>
+                <td> <form action="overzichtpagina.php" method="post" name="delete" id="delete">
+                        <input type="hidden" name="index" value="<?php echo $k ?>">
+                        <input type="submit" name="delete" value="X" id="delete">
+                    </form>
+                <?php echo $k; ?> </td>
             </tr>
             <?php } ?>
         </table>
-        <?php
-        if (isset($_POST['naamBrood']) && !empty($_POST['naamBrood']) &&
-            isset($_POST['meelSoort']) && !empty($_POST['meelSoort']) &&
-            isset($_POST['vormBrood']) && !empty($_POST['vormBrood']) &&
-            isset($_POST['gewichtBrood']) && !empty($_POST['gewichtBrood']))
-        {
-            $_SESSION['broodjes']->voegBroodjeToe($_POST['naamBrood'] ,$_POST['meelSoort'] ,$_POST['vormBrood'] ,$_POST['gewichtBrood']);
-            header("Refresh:0");
-        }
-         else {
-            echo "voer alle velden in aub";
-        }
-        ?>
     </section>
     </div>
     <div id="3">
     <section id="voegBroodToe">
-        <form action="index.php" method="post" id="broodToevoegen">
+        <form action="overzichtpagina.php" method="post" id="broodToevoegen">
             <label> Voeg een nieuw brood toe! </label>
             <label> * verplichte velden</label>
             <br>
@@ -135,6 +137,7 @@
             <input id="gewichtBrood" name="gewichtBrood">
             <br>
             <input type="submit" name="submit" value="voeg toe">
+        </form>
             </div>
     <div>
         <br>
